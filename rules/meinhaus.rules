@@ -1,0 +1,35 @@
+/*
+rule "item abhängig an"
+    when
+        Item eg_ku_l_waschbecken received command ON
+    then
+        eg_ku_d_decke.sendCommand(50)
+end
+
+rule "item abhängig aus"
+    when
+        Item eg_ku_l_waschbecken received command OFF
+    then
+        eg_ku_d_decke.sendCommand(0)
+end
+*/
+
+rule "item abhängig"
+    when
+        Item eg_ku_l_waschbecken received command
+    then
+        switch(receivedCommand) {
+            case ON:  eg_ku_d_decke.sendCommand(50)
+            case OFF: eg_ku_d_decke.sendCommand(0)
+        }       
+end
+
+rule "Rollo Küche"
+ when
+    Item eg_ku_r_str_alexa received command
+ then
+            switch(receivedCommand) {
+            case ON:  eg_ku_r_str.sendCommand(UP)
+            case OFF: eg_ku_r_str.sendCommand(DOWN)
+        }  
+ end  

@@ -1,0 +1,5 @@
+sitemap xiaomi label="Xiaomi" {
+    Frame label="Gateway" {
+        Group item=gXiaomi
+    }
+}

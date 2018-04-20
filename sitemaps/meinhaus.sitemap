@@ -1,0 +1,84 @@
+sitemap meinhaus label="Mein Smart Home" {
+
+    Frame label="Medien" {
+		Text label="Medien" {
+            Video url="http://onesmarthome.de/wp-content/uploads/2018/01/openHAB-2-Sitemap-Elementtyp-Webview.mp4"
+            Image url="http://onesmarthome.de/wp-content/uploads/2017/03/Smart-Home-openHAB-2-Raspberry-Pi-Board-Case.png"
+        }
+    }
+    
+    Frame label="Nachrichten" {
+        Text label="Blogs" {
+            //Webview url="http://onesmarthome.de" height=50
+            //Webview url="http://openhab.org" height=50
+            Webview url="http://openhab.org" height=37
+        }
+        
+    }
+
+    Frame   label="Zentral" {
+        Switch item=gLicht label="Lichter" icon="light"
+        Setpoint item=gHeizung step=2 minValue=7 maxValue=28
+
+        Text item=gHeizung label="Heizung" icon="temperature" {
+            Setpoint item=eg_wz_t_fenster step=1 minValue=7 maxValue=28 
+            Setpoint item=eg_ez_t_fenster step=0.5 minValue=7 maxValue=28 
+            Setpoint item=gHeizung step=2 minValue=7 maxValue=28 
+            Chart item=eg_wz_t_fenster icon="sofa" label="Wohnzimmer" refresh=60000 period=h legend=true
+            Chart item=eg_wz_t_fenster icon="sofa" label="Wohnzimmer" refresh=60000 period=D legend=true
+        }
+
+    }
+    
+    Frame   label="Räume"{      
+        Text item=gWohnzimmer label="Wohnzimmer" icon="sofa" {
+            Default item=gWz_lichter
+            Default item=eg_wz_l_deckenlampe label="Wohnzimmer Deckenlampe"
+            Default item=eg_wz_d_deckenlampe label="Wohnzimmer Dimmer"
+            Default item=eg_wz_c_deckenlampe label="Wohnzimmer Color"                 
+            Default item=eg_wz_r_strasse label="Rollo Straße"
+            Default item=eg_wz_k_fenster_str_li label="Wohnzimmer Fenster Links" 
+            Default item=txt_warnung_heizung_warm visibility=[eg_wz_t_fenster>25] labelcolor=[eg_wz_t_fenster>=27="red", eg_wz_t_fenster>=26="orange"]
+            Setpoint item=eg_wz_t_fenster label="Wohnzimmer Fenster [%.1f °]" step=0.5 minValue=7 maxValue=28 
+            Selection item=eg_wz_t_fenster label="Wohnzimmer Fenster [%s]" mappings=[7=Frostschutz, 18=Standby,23=Komfort]
+            Switch item=eg_wz_t_fenster label="Wohnzimmer Fenster [%s]" mappings=[7=Frostschutz, 18=Standby,23=Komfort] 
+            Default item=eg_wz_t_fenster_ist
+        } 
+
+        Group item=gWohnzimmer
+        
+        Text item=gKu label="Küche" icon="kitchen" {
+            Default item=eg_ku_l_waschbecken label="Küche Waschbecken"
+            Default item=eg_ku_d_decke label="Küche Dimmer"
+            Default item=eg_ku_r_str label="Küche Rollo"
+            Setpoint item=eg_ku_t_soll label="Küche Soll"
+            Default item=eg_ku_t_ist label="Küche Ist"
+        } 
+    }
+
+    Frame   label="Geschosse"{
+        Group item=gEG label="Erdgeschoss" icon="groundfloor"
+    }
+
+    Frame   label="Gewerke"{
+        Group item=gLicht label="Lichter" icon="light"
+        
+        Text item=gLicht label="Lichter" icon="none" {
+            Slider item=gDimmer
+            Default item=gWz_lichter label="Wohnzimmer Lichter"
+            Default item=eg_wz_l_deckenlampe label="Wohnzimmer Deckenlampe"
+            Default item=eg_wz_d_deckenlampe label="Wohnzimmer Dimmer"
+            Default item=eg_ez_d_deckenlampe label="Esszimmer Deckenlampe"
+        }
+        Group item=gRollo 
+        Group item=gStatus
+        Group item=gHeizung
+         
+    }
+
+    Frame   label="Wetter- und Astrodaten"{
+        Group item=gWetterAstro
+        Group item=gAstro
+        Group item=gWetter
+    }
+}

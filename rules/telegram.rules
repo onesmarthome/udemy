@@ -1,0 +1,13 @@
+rule "Telegram an"
+when
+ Item telegram received update ON
+then
+ sendTelegram("thomas","Telegram angeschlatet!")
+end
+
+rule "Telegram aus"
+when
+ Item telegram received update OFF
+then
+ sendTelegram("fortis","Telegram ausgeschlatet!")
+end

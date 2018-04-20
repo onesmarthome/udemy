@@ -1,0 +1,18 @@
+rule "Xiaomi Schalter / Hue Lampe"
+when 
+  Channel "mihome:sensor_switch_aq2:158d00016d8e07:button" triggered SHORT_PRESSED
+then 
+ if (Lampe_Brightness.state != 0) {
+     sendCommand(Lampe_Brightness,0)
+  } 
+  else {
+      sendCommand(Lampe_Brightness,100)
+  }
+end
+
+rule "Wassereinbruch"
+when
+  Item Wassersensor_Leak received update ON
+then
+  sendMail("ts181176@gmail.com", "Wasserleck im Keller", "Im Keller wurde ein Wasserleck erkannt")
+end

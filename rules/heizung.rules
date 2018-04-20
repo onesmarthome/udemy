@@ -1,0 +1,12 @@
+rule "Frostschutz"
+when
+    Item eg_wz_k_fenster_str_li received update
+then
+    if (eg_wz_k_fenster_str_li.state.toString == "OPEN") {
+        eg_wz_t_fenster.postUpdate(7)
+        eg_wz_t_fenster.sendCommand(7)
+    } else if (eg_wz_k_fenster_str_li.state.toString == "CLOSED") {
+        eg_wz_t_fenster.postUpdate(23)
+        eg_wz_t_fenster.sendCommand(23)
+    }
+end

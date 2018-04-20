@@ -1,0 +1,24 @@
+var Number msgcounter = 0
+
+rule "Sicherheit Fenster"
+when
+    Time cron "	0 0/1 * 1/1 * ? *"
+then
+    logInfo("Sicherheit Fenster", "jede Minute")
+    if (presence_status.state == OFF) {
+        logInfo("Sicherheit Fenster", "Alle weg!")
+        if (eg_wz_k_fenster_str_li.state == OPEN && msgcounter < 3) {
+            logInfo("Sicherheit Fenster", "Achtung, alle weg und Fenster WZ auf!")
+            logInfo("Sicherheit Fenster", msgcounter.toString)
+            msgcounter = msgcounter + 1
+        }
+    }
+end
+
+rule "Sicherheit Zähler reset"
+when
+    Item presence_status received update ON
+then
+    msgcounter = 0
+end
+

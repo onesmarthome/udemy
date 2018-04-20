@@ -1,0 +1,31 @@
+Group    gXiaomi
+Group    gGateway (gXiaomi)
+Group    gTemp (gXiaomi)
+Group    gOEM (gXiaomi)
+
+Dimmer   XiaomiMiSmartHomeGateway_Brightness         "Brightness"                            (gGateway)   {channel="mihome:gateway:34ce00fa768a:brightness"}
+Number   XiaomiMiSmartHomeGateway_Illumination       "Illumination"                          (gGateway)    {channel="mihome:gateway:34ce00fa768a:illumination"}
+Color    XiaomiMiSmartHomeGateway_Color              "Color"                                 (gGateway)    {channel="mihome:gateway:34ce00fa768a:color"}
+Dimmer   XiaomiMiSmartHomeGateway_ColorTemperature   "Color Temperature"                     (gGateway)    {channel="mihome:gateway:34ce00fa768a:colorTemperature"}
+Switch   XiaomiMiSmartHomeGateway_EnableSound        "Switch to turn sound off when playing" (gGateway)    {channel="mihome:gateway:34ce00fa768a:enableSound"}
+Number   XiaomiMiSmartHomeGateway_Sound              "Sound Selector"                        (gGateway)   {channel="mihome:gateway:34ce00fa768a:sound"}
+Dimmer   XiaomiMiSmartHomeGateway_Volume             "Sound Volume"                          (gGateway)   {channel="mihome:gateway:34ce00fa768a:volume"}
+
+Number   XiaomiTempSensor_Temperature    "Temperature"   (gTemp)  {channel="mihome:sensor_weather_v1:158d00017208ab:temperature"}
+Number   XiaomiTempSensor_Humidity       "Humidity"      (gTemp)  {channel="mihome:sensor_weather_v1:158d00017208ab:humidity"}
+Number   XiaomiTempSensor_Pressure       "Pressure"      (gTemp)  {channel="mihome:sensor_weather_v1:158d00017208ab:pressure"}
+Number   XiaomiTempSensor_BatteryLevel   "Battery Level" (gTemp)  {channel="mihome:sensor_weather_v1:158d00017208ab:batteryLevel"}
+Switch   XiaomiTempSensor_LowBattery     "Low Battery"   (gTemp)  {channel="mihome:sensor_weather_v1:158d00017208ab:lowBattery"}
+
+Contact    XiaomiFensterSensor_IsOpen             "Open Status"                   (gOEM)  {channel="mihome:sensor_magnet:158d00019ffcf6:isOpen"}
+DateTime   XiaomiFensterSensor_LastOpened         "Last Time Opened (Date/Time) [%s]"  (gOEM) {channel="mihome:sensor_magnet:158d00019ffcf6:lastOpened"}
+Number     XiaomiFensterSensor_IsOpenAlarmTimer   "Alarm Timer"                   (gOEM) {channel="mihome:sensor_magnet:158d00019ffcf6:isOpenAlarmTimer"}
+Number     XiaomiFensterSensor_BatteryLevel       "Battery Level"                 (gOEM) {channel="mihome:sensor_magnet:158d00019ffcf6:batteryLevel"}
+Switch     XiaomiFensterSensor_LowBattery         "Low Battery"                   (gOEM) {channel="mihome:sensor_magnet:158d00019ffcf6:lowBattery"}
+
+Dimmer   Lampe_Brightness   "Brightness"   {channel="hue:0100:00178828dbf5:5:brightness"}
+String   Lampe_Alert        "Alert"        {channel="hue:0100:00178828dbf5:5:alert"}
+
+Switch   Wassersensor_Leak           "Leak detected"   {channel="mihome:sensor_wleak_aq1:158d0001bb895f:leak"}
+Number   Wassersensor_BatteryLevel   "Battery Level"   {channel="mihome:sensor_wleak_aq1:158d0001bb895f:batteryLevel"}
+Switch   Wassersensor_LowBattery     "Low Battery"     {channel="mihome:sensor_wleak_aq1:158d0001bb895f:lowBattery"}

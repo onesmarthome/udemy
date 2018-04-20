@@ -1,0 +1,10 @@
+rule "item abhängig"
+    when
+        Item eg_ez_s_hifi received command
+    then
+        switch(receivedCommand) {
+            case ON:  eg_ez_s_hifi_zwave.sendCommand(ON)
+            case OFF: eg_ez_s_hifi_zwave.sendCommand(OFF)
+       } 
+end
+

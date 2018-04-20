@@ -1,0 +1,13 @@
+rule "täglich 12 Uhr"
+    when
+        Time cron "0 0 12 1/1 * ? *"
+    then
+        eg_wz_t_fenster.sendCommand(20)
+end
+
+rule "Astro"
+    when
+        Channel "astro:sun:hamburg:nauticDusk#event" triggered END
+    then
+        eg_wz_t_fenster.sendCommand(16)
+end    

@@ -1,0 +1,12 @@
+sitemap dummy label="Tests" {
+    Frame label="Telegram" {
+        Switch item=telegram
+    }
+    Frame label="Anwesenheit" {
+        Group item=gPD
+  } 
+
+Frame label="Anwesenheit" {
+        Group item=gEsszimmer 
+    }
+}

@@ -1,0 +1,2 @@
+astro:sun:hamburg "Astro Hamburg" [ geolocation="53.5584902,9.7877408,11", interval=60 ]
+astro:sun:muenchen "Astro München"  [ geolocation="48.1548895,11.4717965,12", interval=60 ]

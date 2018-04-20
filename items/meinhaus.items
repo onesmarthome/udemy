@@ -1,0 +1,41 @@
+Group gHaus "mein Haus"
+
+// Gruppen Gewerke
+Group:Switch:OR(ON, OFF) gLicht "Lichter [(%d)]" (gHaus)
+Group:Dimmer:AVG gDimmer "Dimmer [%.2f]" <light> (gLicht)
+Group gRollo "Rollos" <rollershutter>
+Group gStatus "Kontakte" <contact>
+Group:Number:AVG gHeizung "Heizung [%.2f]" <temperature> (gHaus)
+
+// Gruppen Räume
+Group gWohnzimmer "Wohnzimmer" <sofa> (gHaus)
+Group gKu "Küche" <kitchen> (gHaus)
+Group gEsszimmer  "Esszimmer"  <party> (gHaus)
+Group:Switch:OR(ON, OFF) gWz_lichter "Wohnzimmer Lichter [(%d)]" (gLicht)
+Group gEG
+
+// Räume
+
+// Wohnzimmer
+Switch eg_wz_l_deckenlampe "Wohnzimmer Deckenlampe" <png> (gLicht,gWohnzimmer,gEG,gWz_lichter) ["Switchable"]  {channel="hue:0210:00278828dbf5:1:color_temperature"}
+Dimmer eg_wz_d_deckenlampe "Wohnzimmer Dimmer" <svg> (gDimmer,gLicht,gWohnzimmer,gEG,gWz_lichter) ["Lighting"]  {channel="hue:0210:00278828dbf5:1:color_temperature"}
+Color  eg_wz_c_deckenlampe "Wohnzimmer Color" <colorpicker> (gWohnzimmer,gEG,gWz_lichter)  {channel="hue:0210:00278828dbf5:1:color"}
+
+Rollershutter eg_wz_r_strasse  "Rollo Straße" <rollershutter> (gWohnzimmer,gEG,gRollo) {channel=""}
+Contact eg_wz_k_fenster_str_li "Wohnzimmer Fenster Links [%s]" <contact> (gWohnzimmer,gEG,gStatus) {channel="zwave:device:razberry2:node4:sensor_door"}
+Group gThermostat "Thermostat" ["Thermostat"]
+Number  eg_wz_t_fenster        "Wohnzimmer Fenster [%.1f °]" <radiator> (gThermostat,gWohnzimmer,gEG,gHeizung) ["TargetTemperature"] //{channel="homematic:HM-CC-RT-DN:ccu:NEQ1516120:4#SET_TEMPERATURE"}
+Number  eg_wz_t_fenster_ist    "Wohnzimmer Ist [%.1f °]" <radiator> (gThermostat,gWohnzimmer,gEG,gHeizung) ["CurrentTemperature"] {channel="homematic:HM-CC-RT-DN:ccu2:NEQ1516120:4#ACTUAL_TEMPERATURE"}
+String  dummy "Dummy Homekit" (gThermostat) ["homekit:HeatingCoolingMode"] 
+
+// Esszimmer
+Dimmer eg_ez_d_deckenlampe "Esszimmer Deckenlampe" <light> (gEsszimmer,gDimmer,gLicht)
+Number eg_ez_t_fenster     "Esszimmer Fenster [%.1f °]" <radiator> (gEsszimmer,gEG,gHeizung) 
+
+// Küche
+ Switch eg_ku_l_waschbecken "Küche Waschbecken"   (gKu)   { knx="1/1/7" }
+ Dimmer eg_ku_d_decke       "Küche Dimmer [%.1f]" (gKu)   { knx="1/1/1,1/1/3,1/1/2" }
+ Rollershutter eg_ku_r_str  "Küche Rollo"         (gKu)   { knx="4/1/2,4/1/1"}
+ Number eg_ku_t_soll        "Küche Soll [%.1f °]" (gKu)   { knx="5/1/4"}
+ Number eg_ku_t_ist         "Küche Ist [%.1f °]"  (gKu)   { knx="<5/1/1"}
+ Switch eg_ku_r_str_alexa   "Küche Rollladen" ["Lighting"]

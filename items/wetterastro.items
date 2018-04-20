@@ -1,0 +1,9 @@
+Group gWetterAstro "Wetter- und Astrodaten" <sun_clouds>
+
+Group gAstro "Astro" <moon> (gWetterAstro)
+Group gWetter "Wetter" <sun> (gWetterAstro)
+
+DateTime astro_sun_hamburg_rise_end  "Hamburg Sonnenaufgang Ende [%1$tH:%1$tM]" (gAstro) {channel="astro:sun:hamburg:rise#end"}
+
+Number astro_sun_hamburg_position_elevation "Hamburg Sonnenhöhe [%.0f °]" (gAstro) {channel="astro:sun:hamburg:position#elevation"}
+String astro_sun_hamburg_zodiac_sign "Sternzeichen [MAP(astro.map):%s]" (gAstro) {channel="astro:sun:hamburg:zodiac#sign"}

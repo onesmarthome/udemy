@@ -1,0 +1,49 @@
+/*
+rule "Anwesenheitserkennung"
+when
+ Item gPresence received update
+ then
+  if (gPresence.state == ON && presence_status.state != ON) {
+      presence_timer.postUpdate(OFF) 
+      presence_status.sendCommand(ON)
+  }
+  else if (gPresence.state == OFF && presence_status.state != OFF) {
+      presence_timer.sendCommand(ON)
+  }
+end
+
+rule "Anwesenheit Timer"
+when
+ Item presence_timer received command OFF
+then
+ presence_status.sendCommand(OFF)
+ sendTelegram("thomas","Alle weg!")
+end
+*/
+rule "Anwesenheitserkennung zeitbasiert"
+when
+    Time cron "0 */15 * * * ?"
+then
+    if (presence_status.state == ON) {
+            if (gPresence.state == OFF) {
+	            if (!gPresence.changedSince(now.minusMinutes(15))) {
+                     presence_status.sendCommand(OFF)
+                     sendTelegram("thomas","Alle weg!")
+                }   
+            }
+    }
+    else {
+        if (gPresence.state == ON) 
+        presence_status.sendCommand(ON)
+        else if (presence_status.state == NULL) 
+        presence_status.sendCommand(OFF)
+    }
+end
+
+rule "Anwesenheitserkennung eventbasiert"
+when
+	Item gPresence changed from OFF to ON
+then
+    if (presence_status.state != ON) 
+    presence_status.sendCommand(ON)
+end

@@ -1,0 +1,6 @@
+Group gPD
+Group:Switch:OR(ON,OFF) gPresence "Anwesend [(%d)]" <switch> (gPD)
+Switch presence_p1 "Thomas" <present> (gPD,gPresence)  { channel="network:servicedevice:192_168_0_91_80:online" }
+Switch presence_p2 "Kind"   <present> (gPD,gPresence) { channel="network:servicedevice:192_168_0_53_80:online" }
+Switch presence_status "Gesamtstatus" <present> (gPD)
+Switch presence_timer "Timer" <present> (gPD) { expire="15s,command=OFF" }     

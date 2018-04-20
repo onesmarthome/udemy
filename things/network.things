@@ -1,0 +1,1 @@
+//network:pingdevice:Phone1 "Toll" @ "Presence" [ hostname="192.168.0.91", retry=10, timeout=2000, refreshInterval=60000 ]
