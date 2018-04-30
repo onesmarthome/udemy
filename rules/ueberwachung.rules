@@ -1,0 +1,19 @@
+rule "Kühlschrank Status"
+    when
+        Item eg_ku_k_kschrank changed
+    then
+        if(eg_ku_k_kschrank.state == OPEN) {
+            eg_ku_k_ktimer.sendCommand(ON)
+        } else {
+            eg_ku_k_ktimer.postUpdate(OFF)
+        }
+end
+
+rule "Kühlschrank Timer"
+    when
+        Item eg_ku_k_ktimer received command OFF
+    then
+        logInfo("Kühlschrank Überwachung", "Kühlschrank Tür steht noch auf!")
+        sendTelegram("thomas","Telegram angeschlatet!")
+        eg_ku_k_ktimer.sendCommand(ON)
+end

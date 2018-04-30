@@ -5,4 +5,8 @@ sitemap regeln label="Regeln" {
     Frame label="Szene" {
         Group item=gSzene
     }
+    Frame label="Überwachung" {
+        Group item=gKontakt
+    }
+
 }

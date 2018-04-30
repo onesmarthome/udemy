@@ -1,0 +1,3 @@
+Group gKontakt "Kühlschrank" <contact>
+Contact eg_ku_k_kschrank "Kühlschrank Kontakt [%s]" <contact> (gKontakt) {channel="mihome:sensor_magnet:158d00019ffcf6:isOpen"}
+Switch  eg_ku_k_ktimer   "Kühlschrank Timer"        <time>    (gKontakt) {expire="10s,command=OFF"}
