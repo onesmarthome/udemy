@@ -1,0 +1,8 @@
+Group gSzene "Szene" <projector>
+
+Rollershutter eg_wz_r_links "Wohnzimmer links"   <rollershutter>     (gSzene)
+Rollershutter eg_wz_r_rechts "Wohnzimmer rechts" <rollershutter>     (gSzene)
+Switch        eg_wz_m_leinwand "Wohnzimmer Leinwand" <cinemascreen>  (gSzene)
+Dimmer        eg_wz_d_decke    "Wohnzimmer Decke"    <light>         (gSzene)
+
+Switch        eg_wz_sc_kino    "Kinomodus"           <cinema>        (gSzene) ["Switchable"]

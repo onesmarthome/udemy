@@ -1,0 +1,4 @@
+Group gBewegung "Bewegung" <motion>
+Switch eg_wz_se_bewegung "Bewegungsmelder" <motion> (gBewegung)
+Dimmer eg_wz_d_bewegung  "Licht Bewegung" <light>   (gBewegung) {channel="hue:0100:00178828dbf5:5:brightness", expire="5s,command=OFF"}
+Dimmer eg_wz_d_bewegung_r  "Licht Bewegung R" <light>   (gBewegung) {channel="hue:0100:00178828dbf5:5:brightness"}

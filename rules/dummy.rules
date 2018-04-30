@@ -1,0 +1,22 @@
+/*
+rule "Kino Szene"
+    when
+        Item eg_wz_sc_kino received command
+    then
+            switch(receivedCommand) {
+            case ON:  {
+                    eg_wz_r_rechts.sendCommand(50)
+                    eg_wz_r_links.sendCommand(80)
+                    eg_wz_m_leinwand.sendCommand(ON)
+                    eg_wz_d_decken.sendCommand(20)
+            }
+            case OFF: {
+                    eg_wz_r_rechts.sendCommand(UP)
+                    eg_wz_r_links.sendCommand(UP)
+                    eg_wz_m_leinwand.sendCommand(OFF)
+                    eg_wz_d_decken.sendCommand(0)
+            }
+        }     
+
+end
+*/

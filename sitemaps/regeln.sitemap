@@ -1,0 +1,8 @@
+sitemap regeln label="Regeln" {
+    Frame label="Bewegung" {
+        Group item=gBewegung
+    }
+    Frame label="Szene" {
+        Group item=gSzene
+    }
+}

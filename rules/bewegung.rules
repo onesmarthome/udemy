@@ -1,0 +1,9 @@
+rule "Bewegung erkannt"
+    when
+        Item eg_wz_se_bewegung received command ON
+    then
+        eg_wz_d_bewegung.sendCommand(20)
+        eg_wz_d_bewegung_r.sendCommand(20)
+        Thread::sleep(5000)
+        eg_wz_d_bewegung_r.sendCommand(0)
+end
